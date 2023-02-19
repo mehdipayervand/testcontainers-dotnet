@@ -4,38 +4,14 @@ namespace Testcontainers.Lightstreamer;
 [PublicAPI]
 public sealed class LightstreamerConfiguration : ContainerConfiguration
 {
-
-  public string LightstreamerMode { get; private set; }
-  public string LightstreamerAdapterName { get; private set; }
-  public string LightstreamerAdapterClass { get; private set; }
-
-  public ushort RequestReplyPort { get; private set; }
-  public ushort NotifyPort { get; private set; }
-  public ushort ListenerPort { get; private set; }
-
   /// <summary>
   /// Initializes a new instance of the <see cref="LightstreamerConfiguration" /> class.
   /// </summary>
   public LightstreamerConfiguration()
   {
+
   }
 
-  /// <summary>
-  /// Initializes a new instance of the <see cref="LightstreamerConfiguration" /> class.
-  /// </summary>
-  public LightstreamerConfiguration(
-    string lightstreamerMode,
-    string lightstreamerAdapterName,
-    string lightstreamerAdapterClass,
-    ushort requestReplyPort, ushort notifyPort, ushort listenerPort)
-  {
-    this.LightstreamerMode = lightstreamerMode;
-    this.LightstreamerAdapterName = lightstreamerAdapterName;
-    this.LightstreamerAdapterClass = lightstreamerAdapterClass;
-    this.RequestReplyPort = requestReplyPort;
-    this.NotifyPort = notifyPort;
-    this.ListenerPort = listenerPort;
-  }
 
   /// <summary>
   /// Initializes a new instance of the <see cref="LightstreamerConfiguration" /> class.

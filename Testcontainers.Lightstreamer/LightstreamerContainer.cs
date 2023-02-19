@@ -20,7 +20,7 @@ public sealed class LightstreamerContainer : DockerContainer
   /// <returns>The Lightstreamer connection string.</returns>
   public string GetConnectionString()
   {
-    return new UriBuilder("Lightstreamer", Hostname, GetMappedPublicPort(LightstreamerBuilder..ListenerPort)).Uri.Authority;
+    return new UriBuilder("Lightstreamer", Hostname, GetMappedPublicPort(LightstreamerBuilder.HttpListenerPort)).Uri.Authority;
   }
 
   ///// <summary>

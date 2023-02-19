@@ -6,6 +6,14 @@ public sealed class LightstreamerBuilder : ContainerBuilder<LightstreamerBuilder
 {
   public const string LightstreamerImage = "Lightstreamer:7.3";
 
+  public const string LightstreamerMode = "ls-adapter";
+  public const string LightstreamerAdapterName = "TestAdapter";
+  public const string LightstreamerAdapterClass = "com.myadapter.TestAdapter";
+
+  public const ushort RequestReplyPort = 8080;
+  public const ushort NotifyPort = 9090;
+  public const ushort HttpListenerPort = 10001;
+
   /// <summary>
   /// Initializes a new instance of the <see cref="LightstreamerBuilder" /> class.
   /// </summary>
@@ -40,15 +48,15 @@ public sealed class LightstreamerBuilder : ContainerBuilder<LightstreamerBuilder
   {
     return base.Init()
         .WithImage(LightstreamerImage)
-        .WithPortBinding(this.DockerResourceConfiguration.RequestReplyPort, true)
-        .WithPortBinding(this.DockerResourceConfiguration.NotifyPort, true)
-        .WithPortBinding(this.DockerResourceConfiguration.ListenerPort, true)
-        .WithEnvironment("LS_MODE", this.DockerResourceConfiguration.LightstreamerMode)
-        .WithEnvironment("LS_ADAPTER_NAME", this.DockerResourceConfiguration.LightstreamerAdapterName)
-        .WithEnvironment("LS_ADAPTER_CLASS", this.DockerResourceConfiguration.LightstreamerAdapterClass)
-        .WithEnvironment("LS_ADAPTER_REQUEST_REPLY_PORT", this.DockerResourceConfiguration.RequestReplyPort.ToString("D"))
-        .WithEnvironment("LS_ADAPTER_NOTIFY_PORT", this.DockerResourceConfiguration.NotifyPort.ToString("D"))
-        .WithEnvironment("LS_ADAPTER_HTTP_LISTENER_PORT", this.DockerResourceConfiguration.ListenerPort.ToString("D"))
+        .WithPortBinding(RequestReplyPort, true)
+        .WithPortBinding(NotifyPort, true)
+        .WithPortBinding(HttpListenerPort, true)
+        .WithEnvironment("LS_MODE", LightstreamerMode)
+        .WithEnvironment("LS_ADAPTER_NAME", LightstreamerAdapterName)
+        .WithEnvironment("LS_ADAPTER_CLASS", LightstreamerAdapterClass)
+        .WithEnvironment("LS_ADAPTER_REQUEST_REPLY_PORT", RequestReplyPort.ToString("D"))
+        .WithEnvironment("LS_ADAPTER_NOTIFY_PORT", NotifyPort.ToString("D"))
+        .WithEnvironment("LS_ADAPTER_HTTP_LISTENER_PORT", HttpListenerPort.ToString("D"))
         .WithWaitStrategy(Wait.ForUnixContainer().AddCustomWaitStrategy(new WaitUntil()));
   }
 
